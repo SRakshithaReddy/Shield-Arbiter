@@ -46,6 +46,28 @@ Requires Node 18+.
 | POST | /flags/:id/clear | Clear a false positive |
 | GET | /evidence/verify | Hash chain integrity |
 
+## AI Case Intelligence
+
+ShieldArbiter includes an Astropods-backed Mastra Case Intelligence Agent configured to use Claude Sonnet 4.6 through the AI gateway.
+
+To enable AI case analysis, configure these variables in the backend `.env` file:
+
+```env
+ASTROPODS_AI_URL=
+ASTROPODS_API_TOKEN=
+```
+
+- `ASTROPODS_AI_URL`: URL of the running AI agent service.
+- `ASTROPODS_API_TOKEN`: Shared authentication token used by the backend to authenticate with the agent.
+
+Start and configure the AI agent separately before calling:
+
+`POST /cases/:id/ai-analysis`
+
+If the AI service is unavailable or its configuration is missing, the endpoint cannot provide an AI analysis.
+
+AI recommendations are decision-support outputs and must be reviewed by a human before financial actions are taken. Never commit API keys or authentication tokens.
+
 ## Design notes
 - The registry stores **salted hashes**, never raw personal data. Emails are normalized (Gmail dots and `+tags` removed).
 - "Flagged" means higher risk, not guilt. Overrides require a note and are logged in the evidence chain.
