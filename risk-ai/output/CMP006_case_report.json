@@ -1,0 +1,39 @@
+{
+    "complaint_id": "CMP006",
+    "transaction_id": "TXN006",
+    "risk_assessment": {
+        "risk_score": 30,
+        "classification": "MEDIUM",
+        "decision": "VERIFY",
+        "signals": [
+            {
+                "signal": "EXACT registry match: email",
+                "points": 30,
+                "registry_id": "REG001"
+            }
+        ]
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [
+        {
+            "registry_id": "REG001",
+            "identifier_type": "email",
+            "match_type": "EXACT",
+            "matched_value": "rahulsharma@gmail.com",
+            "reason": "Repeated suspicious transactions",
+            "severity": "HIGH"
+        }
+    ],
+    "arbitration": {
+        "complaint_id": "CMP006",
+        "transaction_id": "TXN006",
+        "recommendation": "REPLACEMENT",
+        "reason": "The buyer has provided a damage photo. Review the image and order details before approving a replacement.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

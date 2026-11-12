@@ -1,0 +1,97 @@
+// Adapter that combines the existing Python risk engine with live merchant flags.
+const { execFile } = require('child_process');
+const { spawn } = require('child_process');
+const path = require('path');
+const db = require('./db');
+const registry = require('./registry');
+
+
+const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
+const PYTHON_ROOT = path.join(PROJECT_ROOT, 'risk-ai');
+
+async function runPythonRisk(order) {
+  const python = process.env.PYTHON_EXECUTABLE || (process.platform === 'win32' ? 'python' : 'python3');
+  const payload = JSON.stringify({
+    transaction_id: order.id || order.transaction_id,
+    email: order.email,
+    ip: order.ip,
+    device_id: order.device_id,
+    shipping_address: order.shipping_address,
+    amount: Number(order.amount || 0),
+    previous_orders: Number(order.previous_orders || 0),
+    failed_attempts: Number(order.failed_attempts || 0),
+  });
+  const result = await new Promise((resolve, reject) => {
+    const child = spawn(python, [path.join(PYTHON_ROOT, 'python_bridge.py')], {
+      cwd: PYTHON_ROOT, windowsHide: true,
+    });
+    let stdout = ''; let stderr = '';
+    const timer = setTimeout(() => { child.kill(); reject(new Error('Python risk engine timed out')); }, 15000);
+    child.stdout.setEncoding('utf8'); child.stderr.setEncoding('utf8');
+    child.stdout.on('data', chunk => { stdout += chunk; });
+    child.stderr.on('data', chunk => { stderr += chunk; });
+    child.on('error', err => { clearTimeout(timer); reject(err); });
+    child.on('close', code => {
+      clearTimeout(timer);
+      if (code !== 0) return reject(new Error(`Python risk engine failed: ${stderr || stdout}`));
+      try { resolve(JSON.parse(stdout.trim())); }
+      catch (err) { reject(new Error(`Invalid Python risk response: ${err.message}`)); }
+    });
+    child.stdin.end(payload);
+  });
+  if (result.error) throw new Error(result.error);
+  return result;
+}
+
+async function scoreOrder(order) {
+  const pythonResult = await runPythonRisk(order);
+  const base = pythonResult.risk;
+  const liveMatches = registry.findMatches(order);
+  const liveSignals = liveMatches.map((m) => ({
+    name: 'live_flagged_identifier',
+    points: Math.max(1, Math.min(30, Math.round(Number(m.severity || 0) * 0.3))),
+    detail: `${m.type} matches a previously flagged merchant record (${m.reason})`,
+  }));
+  const score = Math.min(100, Number(base.risk_score || 0) + liveSignals.reduce((n, s) => n + s.points, 0));
+  const decision = score >= 60 ? 'HOLD' : score >= 30 ? 'VERIFY' : 'APPROVE';
+  const signals = [
+    ...(base.signals || []).map((s) => ({
+      name: s.signal || 'python_risk_signal',
+      points: Number(s.points || 0),
+      detail: s.signal || 'Python risk signal',
+      registry_id: s.registry_id || null,
+    })),
+    ...liveSignals,
+  ];
+  return {
+    risk_score: score,
+    classification: score >= 60 ? 'HIGH' : score >= 30 ? 'MEDIUM' : 'LOW',
+    signals,
+    matches: [...(base.registry_matches || []), ...liveMatches],
+    decision,
+    explanation: signals.length
+      ? `Risk ${score}/100. ${signals.map((s) => `${s.detail} (+${s.points})`).join('; ')}`
+      : 'No configured risk indicators detected. This does not guarantee that the transaction is safe.',
+    data_quality: pythonResult.data_quality,
+    engine: 'python-risk-engine+merchant-registry',
+  };
+}
+
+function buildPopup(result, direction = 'inbound') {
+  if (!result.matches || result.matches.length === 0) return null;
+  return {
+    direction,
+    title: 'Previously flagged payment medium detected',
+    risk_score: result.risk_score,
+    matches: result.matches.map((m) => ({
+      type: m.type || m.identifier_type,
+      match: m.match || (m.match_type || '').toLowerCase(),
+      reason: m.reason,
+      case_id: m.case_id || null,
+      flagged_on: m.flagged_on || null,
+    })),
+    note: 'A match is a risk indicator based on prior records, not proof of wrongdoing.',
+    actions: ['hold', 'proceed_with_caution', 'mark_false_positive'],
+  };
+}
+module.exports = { scoreOrder, buildPopup };

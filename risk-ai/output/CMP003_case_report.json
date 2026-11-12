@@ -1,0 +1,29 @@
+{
+    "complaint_id": "CMP003",
+    "transaction_id": "TXN003",
+    "risk_assessment": {
+        "risk_score": 10,
+        "classification": "LOW",
+        "decision": "APPROVE",
+        "signals": [
+            {
+                "signal": "Repeated failed payment attempts",
+                "points": 10
+            }
+        ]
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [],
+    "arbitration": {
+        "complaint_id": "CMP003",
+        "transaction_id": "TXN003",
+        "recommendation": "REPLACEMENT",
+        "reason": "A product photo has been provided for review of the reported incorrect item.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

@@ -1,0 +1,36 @@
+"""JSON stdin/stdout bridge from the Node.js API to the existing Python risk engine."""
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+
+from modules.risk_engine import calculate_risk
+from modules.data_normalizer import assess_data_quality
+
+
+def main():
+    raw = sys.stdin.read()
+    payload = json.loads(raw or "{}")
+    transaction = {
+        "transaction_id": payload.get("transaction_id"),
+        "email": payload.get("email"),
+        "ip_address": payload.get("ip") or payload.get("ip_address"),
+        "device_id": payload.get("device_id"),
+        "shipping_address": payload.get("shipping_address"),
+        "amount": payload.get("amount", 0),
+        "previous_orders": payload.get("previous_orders", 0),
+        "failed_attempts": payload.get("failed_attempts", 0),
+    }
+    result = calculate_risk(transaction)
+    quality = assess_data_quality(transaction)
+    print(json.dumps({"risk": result, "data_quality": quality}, default=str))
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(json.dumps({"error": str(exc)}))
+        sys.exit(1)

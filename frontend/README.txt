@@ -1,0 +1,1 @@
+Replace the three files in your existing ShieldArbiter\frontend folder with these files. The checkout form now sends IP address and shipping address to the backend, and requires a demo device ID. IP/device/country fields are merchant-supplied demo signals, not independently verified PayPal facts. No backend files are changed.

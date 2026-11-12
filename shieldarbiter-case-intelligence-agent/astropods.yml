@@ -1,0 +1,27 @@
+
+spec: blueprint/v1
+name: shieldarbiter-case-intelligence-agent
+
+agent:
+  build:
+    context: .
+    dockerfile: Dockerfile
+  interfaces:
+    frontend: true
+    messaging: true
+  inputs:
+    - name: SHIELDARBITER_API_TOKEN
+      datatype: string
+      secret: true
+      description: Shared authentication token for the ShieldArbiter backend
+
+models:
+  default:
+    provider: gateway
+
+dev:
+  interfaces:
+    frontend:
+      port: 3200
+    messaging:
+      adapters: [web]

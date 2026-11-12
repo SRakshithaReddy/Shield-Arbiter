@@ -1,0 +1,37 @@
+{
+    "complaint_id": "CMP007",
+    "transaction_id": "TXN007",
+    "risk_assessment": {
+        "risk_score": 30,
+        "classification": "MEDIUM",
+        "decision": "VERIFY",
+        "signals": [
+            {
+                "signal": "Elevated transaction amount",
+                "points": 10
+            },
+            {
+                "signal": "No previous orders",
+                "points": 10
+            },
+            {
+                "signal": "Repeated failed payment attempts",
+                "points": 10
+            }
+        ]
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [],
+    "arbitration": {
+        "complaint_id": "CMP007",
+        "transaction_id": "TXN007",
+        "recommendation": "MANUAL_REVIEW",
+        "reason": "The shipment is marked as delivered. Review delivery evidence before deciding whether a refund is appropriate.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

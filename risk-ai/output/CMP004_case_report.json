@@ -1,0 +1,24 @@
+{
+    "complaint_id": "CMP004",
+    "transaction_id": "TXN004",
+    "risk_assessment": {
+        "risk_score": 0,
+        "classification": "LOW",
+        "decision": "APPROVE",
+        "signals": []
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [],
+    "arbitration": {
+        "complaint_id": "CMP004",
+        "transaction_id": "TXN004",
+        "recommendation": "WAIT_FOR_DELIVERY",
+        "reason": "The tracking status indicates that the package is still in transit.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

@@ -1,0 +1,24 @@
+{
+    "complaint_id": "CMP002",
+    "transaction_id": "TXN002",
+    "risk_assessment": {
+        "risk_score": 0,
+        "classification": "LOW",
+        "decision": "APPROVE",
+        "signals": []
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [],
+    "arbitration": {
+        "complaint_id": "CMP002",
+        "transaction_id": "TXN002",
+        "recommendation": "REPLACEMENT",
+        "reason": "The buyer has provided a damage photo. Review the image and order details before approving a replacement.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

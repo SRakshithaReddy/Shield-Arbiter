@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShieldArbiter | PayPal + AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/styles/ag-grid.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/styles/ag-theme-alpine.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#overview">
+      <span class="brand-mark">S</span>
+      <span><strong>ShieldArbiter</strong><small>PAYPAL + AI PROTECTION</small></span>
+    </a>
+    <div class="nav-caption">WORKSPACE</div>
+    <nav class="side-nav">
+      <a class="active" href="#overview"><span>▦</span> Overview</a>
+      <a href="#sandboxCheckout"><span>＋</span> PayPal checkout</a>
+      <a href="#transactions"><span>⇄</span> Transactions</a>
+      <a href="#risk"><span>◈</span> Risk intelligence</a>
+      <a href="#cases" id="casesNavLink"><span>▤</span> Cases</a>
+      <a href="#resolution"><span>✧</span> AI resolution</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="connection-indicator"><i></i><span>Backend connection</span></div>
+      <small>Sandbox environment</small>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">MERCHANT WORKSPACE / PAYMENT INTELLIGENCE</div>
+        <h1>Overview</h1>
+        <p>Monitor PayPal payments, understand risk and resolve complaints before they become disputes.</p>
+      </div>
+      <div class="topbar-actions">
+        <span class="environment-pill"><i></i> SANDBOX</span>
+        <button class="btn btn-outline-secondary btn-sm" type="button" onclick="loadTransactions()">↻ Refresh data</button>
+      </div>
+    </header>
+
+    <section id="overview">
+      <div class="welcome-strip">
+        <div>
+          <span class="welcome-kicker">PAYMENTS, RISK & RESOLUTION</span>
+          <h2>Turn payment signals into better decisions.</h2>
+          <p>ShieldArbiter combines PayPal transaction data, risk signals and AI-assisted complaint resolution.</p>
+        </div>
+        <div class="welcome-orbit" aria-hidden="true"><span>AI</span><b>PAYPAL</b></div>
+      </div>
+
+      <div class="section-heading">
+        <div><span class="eyebrow">LIVE SNAPSHOT</span><h2>Payment overview</h2></div>
+        <span class="subtle">Values loaded from your local backend</span>
+      </div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Total transactions</span><span class="stat-icon blue">⇄</span></div><strong id="totalTransactions">0</strong><small>Orders in the local database</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Low risk</span><span class="stat-icon green">✓</span></div><strong id="lowRisk">0</strong><small>Risk score below 40</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Medium risk</span><span class="stat-icon amber">!</span></div><strong id="mediumRisk">0</strong><small>Risk score from 40 to 69</small></article>
+        <article class="stat-card"><div class="stat-top"><span>High risk</span><span class="stat-icon red">⚑</span></div><strong id="highRisk">0</strong><small>Risk score of 70 or higher</small></article>
+      </div>
+    </section>
+
+    <section class="dashboard-card checkout-card mt-4" id="sandboxCheckout">
+      <div class="card-heading">
+        <div><span class="eyebrow">PAYPAL INTEGRATION</span><h2>Create a sandbox payment</h2><p>Start a test checkout, approve it with a PayPal Sandbox buyer, then return here to capture and score it.</p></div>
+        <span class="paypal-wordmark">PayPal</span>
+      </div>
+      <form id="sandboxPaymentForm" class="row g-3">
+        <div class="col-md-4"><label for="buyerEmail" class="form-label">Buyer email</label><input id="buyerEmail" class="form-control" type="email" placeholder="buyer@example.com" required></div>
+        <div class="col-md-3"><label for="paymentAmount" class="form-label">Amount</label><input id="paymentAmount" class="form-control" type="number" min="0.01" step="0.01" value="25.00" required></div>
+        <div class="col-md-2"><label for="paymentCurrency" class="form-label">Currency</label><select id="paymentCurrency" class="form-select"><option value="USD">USD</option><option value="INR">INR</option></select></div>
+        <div class="col-md-3"><label for="buyerDevice" class="form-label">Device ID (demo)</label><input id="buyerDevice" class="form-control" type="text" placeholder="device-001" required></div>
+        <div class="col-md-3"><label for="buyerIp" class="form-label">IP address (demo)</label><input id="buyerIp" class="form-control" type="text" placeholder="203.0.113.10" required></div>
+        <div class="col-md-6"><label for="shippingAddress" class="form-label">Shipping address (demo)</label><input id="shippingAddress" class="form-control" type="text" placeholder="123 Example Street, City" required></div>
+        <div class="col-md-3"><label for="ipCountry" class="form-label">IP country</label><input id="ipCountry" class="form-control" type="text" maxlength="2" placeholder="US"></div>
+        <div class="col-md-3"><label for="shipCountry" class="form-label">Shipping country</label><input id="shipCountry" class="form-control" type="text" maxlength="2" placeholder="US"></div>
+        <div class="col-12 form-footnote">IP, device and country values are demo signals supplied by the merchant; they are not independently verified PayPal facts.</div>
+        <div class="col-12 d-flex align-items-center gap-3 flex-wrap"><button class="btn btn-primary" type="submit" id="createSandboxPayment">Create PayPal sandbox checkout</button><span id="checkoutMessage" class="small" role="status"></span></div>
+      </form>
+    </section>
+
+    <section class="dashboard-card mt-4" id="transactions">
+      <div class="section-heading compact"><div><span class="eyebrow">PAYMENT ACTIVITY</span><h2>Recent transactions</h2><p>Search and inspect PayPal orders and their risk signals.</p></div><span class="live-label"><i></i> Backend data</span></div>
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-3 mb-3">
+        <label class="visually-hidden" for="transactionSearch">Search transactions</label>
+        <input id="transactionSearch" class="form-control search-input" type="search" placeholder="Search ID, customer, risk, status…">
+        <span class="small text-muted">Sortable · Filterable · Paginated</span>
+      </div>
+      <div id="transactionLoadError" class="alert alert-danger d-none" role="alert"></div>
+      <div id="transactionGrid" class="ag-theme-alpine shield-grid" aria-label="Searchable transaction grid"></div>
+      <div class="table-responsive" id="transactionTableFallback"><table class="table table-hover mt-3"><thead><tr><th>Transaction ID</th><th>Customer</th><th>Amount</th><th>Risk Score</th><th>Risk Level</th><th>Action</th></tr></thead><tbody id="transactionTable"></tbody></table></div>
+    </section>
+
+    <section class="dashboard-card mt-4" id="risk">
+      <div class="section-heading compact"><div><span class="eyebrow">RISK INTELLIGENCE</span><h2>Transaction intelligence</h2><p>Select a transaction to inspect its risk score, registry matches and decision.</p></div></div>
+      <div id="transactionDetails" class="empty-state"><span class="empty-icon">◈</span><strong>No transaction selected</strong><span>Choose “View” in the transaction table to inspect payment intelligence.</span></div>
+    </section>
+
+    <section class="dashboard-card mt-4" id="cases">
+      <div class="section-heading compact">
+        <div><span class="eyebrow">CASE MANAGEMENT</span><h2>Customer cases</h2><p>Review complaints, arbitration, AI recommendations, policy proposals and merchant decisions.</p></div>
+        <button class="btn btn-outline-secondary btn-sm" type="button" id="refreshCasesBtn">↻ Refresh cases</button>
+      </div>
+      <div id="casesLoadMessage" class="small text-muted mb-3" role="status">Loading cases…</div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead><tr><th>Case</th><th>Transaction</th><th>Complaint</th><th>Arbitration</th><th>AI recommendation</th><th>Compensation</th><th>Approval</th><th>Status</th><th></th></tr></thead>
+          <tbody id="casesTableBody"><tr><td colspan="9">Loading cases…</td></tr></tbody>
+        </table>
+      </div>
+      <div id="caseDetailsPanel" class="case-details-panel d-none" aria-live="polite"></div>
+    </section>
+
+    <section class="dashboard-card mt-4" id="resolution">
+      <div class="section-heading compact"><div><span class="eyebrow">AI-ASSISTED PRE-DISPUTE</span><h2>Complaint resolution workflow</h2><p>Open a case from a transaction to run arbitration, AI analysis and merchant policy evaluation.</p></div><span class="ai-chip">✧ AI assisted</span></div>
+      <div class="workflow-steps">
+        <div><b>01</b><strong>Understand</strong><span>Classify the buyer complaint</span></div>
+        <div><b>02</b><strong>Assess</strong><span>Review risk, evidence and AI guidance</span></div>
+        <div><b>03</b><strong>Resolve</strong><span>Apply policy and request merchant approval</span></div>
+      </div>
+      <p class="workflow-note">Financial actions remain subject to merchant approval. A recommendation is not proof of fraud and does not itself issue a refund.</p>
+    </section>
+
+    <footer class="footer-note"><span class="footer-mark">S</span><span>ShieldArbiter · PayPal + AI payment intelligence</span><span>Local prototype · Sandbox data</span></footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@32.3.3/dist/ag-grid-community.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

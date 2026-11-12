@@ -1,0 +1,17 @@
+SHIELDARBITER FRONTEND REFRESH
+
+1. Stop nothing on the backend; leave npm start running.
+2. Copy index.html, style.css and script.js into:
+   ShieldArbiter\frontend
+3. Replace the existing files when Windows asks.
+4. Refresh http://localhost:5500/frontend/ with Ctrl+F5.
+
+The frontend continues to use the existing backend at http://localhost:3000.
+The complaint workflow now calls:
+- POST /cases
+- POST /cases/:id/arbitrate (best-effort)
+- POST /cases/:id/ai-analysis
+- POST /cases/:id/evaluate-policy
+
+Refund approval remains an explicit action and now asks for confirmation first.
+No backend files or database records are changed by installing these frontend files.

@@ -1,0 +1,47 @@
+{
+    "complaint_id": "CMP001",
+    "transaction_id": "TXN001",
+    "risk_assessment": {
+        "risk_score": 50,
+        "classification": "MEDIUM",
+        "decision": "VERIFY",
+        "signals": [
+            {
+                "signal": "Elevated transaction amount",
+                "points": 10
+            },
+            {
+                "signal": "No previous orders",
+                "points": 10
+            },
+            {
+                "signal": "EXACT registry match: email",
+                "points": 30,
+                "registry_id": "REG001"
+            }
+        ]
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [
+        {
+            "registry_id": "REG001",
+            "identifier_type": "email",
+            "match_type": "EXACT",
+            "matched_value": "rahulsharma@gmail.com",
+            "reason": "Repeated suspicious transactions",
+            "severity": "HIGH"
+        }
+    ],
+    "arbitration": {
+        "complaint_id": "CMP001",
+        "transaction_id": "TXN001",
+        "recommendation": "MANUAL_REVIEW",
+        "reason": "The shipment is marked as delivered. Review delivery evidence before deciding whether a refund is appropriate.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

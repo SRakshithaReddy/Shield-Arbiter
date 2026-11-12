@@ -1,0 +1,64 @@
+{
+    "complaint_id": "CMP005",
+    "transaction_id": "TXN005",
+    "risk_assessment": {
+        "risk_score": 75,
+        "classification": "HIGH",
+        "decision": "HOLD",
+        "signals": [
+            {
+                "signal": "High transaction amount",
+                "points": 20
+            },
+            {
+                "signal": "No previous orders",
+                "points": 10
+            },
+            {
+                "signal": "Multiple failed payment attempts",
+                "points": 20
+            },
+            {
+                "signal": "EXACT registry match: device_id",
+                "points": 15,
+                "registry_id": "REG002"
+            },
+            {
+                "signal": "EXACT registry match: ip_address",
+                "points": 10,
+                "registry_id": "REG003"
+            }
+        ]
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [
+        {
+            "registry_id": "REG002",
+            "identifier_type": "device_id",
+            "match_type": "EXACT",
+            "matched_value": "device105",
+            "reason": "Multiple failed payment attempts",
+            "severity": "MEDIUM"
+        },
+        {
+            "registry_id": "REG003",
+            "identifier_type": "ip_address",
+            "match_type": "EXACT",
+            "matched_value": "185.220.101.5",
+            "reason": "Previously observed suspicious activity",
+            "severity": "HIGH"
+        }
+    ],
+    "arbitration": {
+        "complaint_id": "CMP005",
+        "transaction_id": "TXN005",
+        "recommendation": "PARTIAL_REFUND",
+        "reason": "A product photo is available for comparison with the original listing. Consider a partial refund after reviewing the discrepancy.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

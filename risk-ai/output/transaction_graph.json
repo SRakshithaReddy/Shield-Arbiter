@@ -1,0 +1,88 @@
+{
+    "nodes": [
+        {
+            "id": "TXN001"
+        },
+        {
+            "id": "TXN006"
+        },
+        {
+            "id": "TXN003"
+        },
+        {
+            "id": "TXN007"
+        },
+        {
+            "id": "TXN004"
+        },
+        {
+            "id": "TXN008"
+        },
+        {
+            "id": "TXN005"
+        },
+        {
+            "id": "TXN009"
+        }
+    ],
+    "edges": [
+        {
+            "source": "TXN001",
+            "target": "TXN006",
+            "identifier_type": "email",
+            "shared_value": "rahulsharma@gmail.com"
+        },
+        {
+            "source": "TXN001",
+            "target": "TXN006",
+            "identifier_type": "device_id",
+            "shared_value": "device101"
+        },
+        {
+            "source": "TXN001",
+            "target": "TXN006",
+            "identifier_type": "ip_address",
+            "shared_value": "192.168.1.10"
+        },
+        {
+            "source": "TXN003",
+            "target": "TXN007",
+            "identifier_type": "ip_address",
+            "shared_value": "103.25.10.20"
+        },
+        {
+            "source": "TXN004",
+            "target": "TXN008",
+            "identifier_type": "ip_address",
+            "shared_value": "49.36.10.15"
+        },
+        {
+            "source": "TXN005",
+            "target": "TXN009",
+            "identifier_type": "ip_address",
+            "shared_value": "185.220.101.5"
+        }
+    ],
+    "summary": {
+        "total_nodes": 8,
+        "total_edges": 6,
+        "connected_groups": [
+            [
+                "TXN001",
+                "TXN006"
+            ],
+            [
+                "TXN003",
+                "TXN007"
+            ],
+            [
+                "TXN004",
+                "TXN008"
+            ],
+            [
+                "TXN005",
+                "TXN009"
+            ]
+        ]
+    }
+}

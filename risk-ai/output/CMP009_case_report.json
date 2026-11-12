@@ -1,0 +1,64 @@
+{
+    "complaint_id": "CMP009",
+    "transaction_id": "TXN009",
+    "risk_assessment": {
+        "risk_score": 80,
+        "classification": "HIGH",
+        "decision": "HOLD",
+        "signals": [
+            {
+                "signal": "High transaction amount",
+                "points": 20
+            },
+            {
+                "signal": "No previous orders",
+                "points": 10
+            },
+            {
+                "signal": "Multiple failed payment attempts",
+                "points": 20
+            },
+            {
+                "signal": "EXACT registry match: email",
+                "points": 20,
+                "registry_id": "REG004"
+            },
+            {
+                "signal": "EXACT registry match: ip_address",
+                "points": 10,
+                "registry_id": "REG003"
+            }
+        ]
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [
+        {
+            "registry_id": "REG004",
+            "identifier_type": "email",
+            "match_type": "EXACT",
+            "matched_value": "unknownuser@gmail.com",
+            "reason": "Repeated unusual transaction patterns",
+            "severity": "MEDIUM"
+        },
+        {
+            "registry_id": "REG003",
+            "identifier_type": "ip_address",
+            "match_type": "EXACT",
+            "matched_value": "185.220.101.5",
+            "reason": "Previously observed suspicious activity",
+            "severity": "HIGH"
+        }
+    ],
+    "arbitration": {
+        "complaint_id": "CMP009",
+        "transaction_id": "TXN009",
+        "recommendation": "REPLACEMENT",
+        "reason": "The buyer has provided a damage photo. Review the image and order details before approving a replacement.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

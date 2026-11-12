@@ -1,0 +1,11 @@
+transaction_id,email,payment_id,device_id,ip_address,shipping_address,amount,previous_orders,failed_attempts
+TXN001,rahul.sharma@gmail.com,PAY001,DEVICE101,192.168.1.10,12 MG Road Bangalore,5000,0,0
+TXN002,priya.nair@gmail.com,PAY002,DEVICE102,192.168.1.11,45 Park Street Kolkata,1200,8,0
+TXN003,arjun.reddy@gmail.com,PAY003,DEVICE103,103.25.10.20,22 Banjara Hills Hyderabad,3500,1,2
+TXN004,sneha.kumar@gmail.com,PAY004,DEVICE104,49.36.10.15,8 Anna Salai Chennai,800,12,0
+TXN005,kiran.patel@gmail.com,PAY005,DEVICE105,185.220.101.5,17 FC Road Pune,7500,0,5
+TXN006,rahul.sharma@gmail.com,PAY006,DEVICE101,192.168.1.10,12 MG Road Bangalore,2500,1,0
+TXN007,alex.morgan@outlook.com,PAY007,DEVICE106,103.25.10.20,22 Banjara Hills Hyderabad,6200,0,3
+TXN008,meera.iyer@gmail.com,PAY008,DEVICE107,49.36.10.15,8 Anna Salai Chennai,1800,6,0
+TXN009,unknown.user@gmail.com,PAY009,DEVICE108,185.220.101.5,99 Unknown Road Delhi,9000,0,7
+TXN010,dev.malhotra@gmail.com,PAY010,DEVICE109,192.168.1.20,30 Sector 18 Noida,2200,3,1

@@ -1,0 +1,11 @@
+complaint_id,transaction_id,complaint_type,buyer_description,delivery_status,evidence_available,item_value
+CMP001,TXN001,ITEM_NOT_RECEIVED,Buyer says item was not received,DELIVERED,delivery_photo,5000
+CMP002,TXN002,DAMAGED_ITEM,Buyer reports damaged item,DELIVERED,damage_photo,1200
+CMP003,TXN003,WRONG_ITEM,Buyer received a different product,DELIVERED,product_photo,3500
+CMP004,TXN004,ITEM_NOT_RECEIVED,Buyer says package never arrived,IN_TRANSIT,tracking_record,800
+CMP005,TXN005,ITEM_NOT_AS_DESCRIBED,Buyer says product differs from listing,DELIVERED,product_photo,7500
+CMP006,TXN006,DAMAGED_ITEM,Buyer reports damaged packaging and item,DELIVERED,damage_photo,2500
+CMP007,TXN007,ITEM_NOT_RECEIVED,Buyer says package was not received,DELIVERED,delivery_photo,6200
+CMP008,TXN008,WRONG_ITEM,Buyer received incorrect product,DELIVERED,product_photo,1800
+CMP009,TXN009,DAMAGED_ITEM,Buyer reports severe product damage,DELIVERED,damage_photo,9000
+CMP010,TXN010,ITEM_NOT_RECEIVED,Buyer says delivery is pending,IN_TRANSIT,tracking_record,2200

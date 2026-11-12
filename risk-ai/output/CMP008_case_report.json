@@ -1,0 +1,24 @@
+{
+    "complaint_id": "CMP008",
+    "transaction_id": "TXN008",
+    "risk_assessment": {
+        "risk_score": 0,
+        "classification": "LOW",
+        "decision": "APPROVE",
+        "signals": []
+    },
+    "data_quality": {
+        "status": "COMPLETE",
+        "warnings": []
+    },
+    "registry_matches": [],
+    "arbitration": {
+        "complaint_id": "CMP008",
+        "transaction_id": "TXN008",
+        "recommendation": "REPLACEMENT",
+        "reason": "A product photo has been provided for review of the reported incorrect item.",
+        "requires_human_review": true
+    },
+    "evidence_integrity": null,
+    "requires_human_review": true
+}

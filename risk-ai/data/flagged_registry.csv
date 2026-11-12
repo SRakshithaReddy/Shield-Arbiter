@@ -1,0 +1,6 @@
+registry_id,identifier_type,identifier_value,reason,severity,status
+REG001,email,rahulsharma@gmail.com,Repeated suspicious transactions,HIGH,ACTIVE
+REG002,device_id,device105,Multiple failed payment attempts,MEDIUM,ACTIVE
+REG003,ip_address,185.220.101.5,Previously observed suspicious activity,HIGH,ACTIVE
+REG004,email,unknownuser@gmail.com,Repeated unusual transaction patterns,MEDIUM,ACTIVE
+REG005,device_id,device999,Previously flagged device identifier,LOW,ACTIVE
