@@ -96,6 +96,43 @@ Watch the ShieldArbiter project demonstration:
 
 [Watch the ShieldArbiter Demo](https://youtu.be/MYeyQhxGbkQ?si=ZsQLLsrAEj-2teg8)
 
+## Application Screenshots
+
+Explore the ShieldArbiter interface and its key workflows.
+
+### 1. Main Dashboard
+![ShieldArbiter Dashboard](screenshots/01-dashboard.png)
+
+### 2. PayPal Sandbox Checkout
+![PayPal Sandbox Checkout](screenshots/02-paypal-checkout.png)
+
+### 3. Transaction Explorer
+![Transaction Explorer](screenshots/03-transactions.png)
+
+### 4. Transaction Risk Intelligence
+![Risk Intelligence](screenshots/04-risk-intelligence.png)
+
+### 5. Case Management
+![Case Management](screenshots/05-case-management.png)
+
+### 6. Case Details
+![Case Details](screenshots/06-case-details.png)
+
+### 7. AI-Assisted Case Analysis
+![AI Case Analysis](screenshots/07-ai-analysis.png)
+
+### 8. AI Recommendation Rationale
+![AI Rationale](screenshots/08-ai-rationale.png)
+
+### 9. Evidence Analysis
+![Evidence Analysis](screenshots/09-evidence-analysis.png)
+
+### 10. Evidence History
+![Evidence History](screenshots/10-evidence-history.png)
+
+### 11. Refund Outcome
+![Refund Outcome](screenshots/11-refund-outcome.png)
+
 ## License
 
 This project is part of ShieldArbiter. See the repository's root `LICENSE` file for licensing information.
