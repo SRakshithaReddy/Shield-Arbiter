@@ -16,7 +16,7 @@ This build combines the latest Mriya Node.js/PayPal + AG Grid project with Raksh
 - Python registry is a local CSV dataset; Node registry is a separate SQLite registry. Both are consulted, but they are not yet one unified registry or one identifier normalization service.
 - `previous_orders` is derived from prior local orders for the supplied email. `failed_attempts` is currently zero because this app does not yet persist a failed-attempt counter.
 - Storefront-provided email, device, address and country fields are unverified signals. The app does not currently collect a trustworthy client IP/device fingerprint or geolocation source.
-- The Python AI explainer remains deterministic/rule-based. Astropods/model integration is not yet implemented.
+- The Python risk engine uses deterministic, rule-based indicators. Separately, the project includes an Astropods-backed Mastra Case Intelligence Agent using Claude Sonnet 4.6 through the configured AI gateway. The backend exposes a case-analysis endpoint that sends relevant transaction, complaint and evidence information to this agent. The agent returns structured recommendations and requires human review before financial actions. The AI service requires its gateway credentials and backend connection settings to be configured.
 - Evidence records are hash chained in SQLite, not immutable against an administrator who can rewrite the database and chain.
 - Image forensics currently reports file hash, format, dimensions and available metadata. It is not a definitive image-manipulation detector.
 - Merchant overrides require a note, but authentication/authorization must be added before production use.
