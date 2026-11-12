@@ -1,70 +1,101 @@
 # ShieldArbiter Case Intelligence Agent
 
-An AI-powered case intelligence service that analyzes transaction, complaint, and evidence information to generate structured recommendations for merchant review.
+An AI-powered case intelligence service for ShieldArbiter that analyzes transaction details, customer complaints, and supporting evidence to generate structured recommendations for merchant review.
 
-## What It Does
+## Overview
 
-The agent supports ShieldArbiter's dispute-review workflow by:
+The ShieldArbiter Case Intelligence Agent supports merchants in reviewing payment disputes and pre-dispute cases. It uses AI to interpret available case information and provide recommendations that assist human decision-making.
 
-- Analyzing transaction and complaint context.
-- Reviewing available evidence information.
-- Generating structured case recommendations.
-- Supporting human decision-making during merchant review.
+Built using **Mastra**, the **Astropods AI Gateway**, and **Claude Sonnet 4.6**, the agent is designed to support explainable, human-reviewed dispute resolution.
 
-The agent uses **Mastra**, the **Astropods AI gateway**, and **Claude Sonnet 4.6**.
+## Key Capabilities
+
+- **Transaction Analysis:** Evaluates transaction information and associated risk indicators.
+- **Complaint Analysis:** Examines customer complaints and their reported issues.
+- **Evidence Review:** Considers available evidence and supporting case information.
+- **Case Recommendations:** Generates structured recommendations to assist merchant review.
+- **Human Oversight:** Keeps final dispute and financial decisions under authorized human control.
+
+## Technology Stack
+
+- Mastra
+- Astropods AI Gateway
+- Claude Sonnet 4.6
+- Bun
+- TypeScript
 
 ## Requirements
 
 - [Bun](https://bun.sh/)
-- Astropods AI gateway credentials
+- Configured Astropods AI Gateway credentials
 - ShieldArbiter backend authentication token
 
-## Setup
+## Setup and Installation
 
-Install dependencies:
+**1. Install dependencies**
 
 ```bash
 bun install
 ```
 
-Configure the required environment variables using your local environment configuration:
+**2. Configure environment variables**
 
-- `ASTRO_GATEWAY_URL`
-- `ASTRO_GATEWAY_API_KEY`
-- `SHIELDARBITER_API_TOKEN`
-- `MODEL_DEFAULT` (optional; defaults to `claude-sonnet-4-6`)
+Set the following variables in your local environment:
 
-Start the agent in development mode:
+| Variable | Purpose |
+|---|---|
+| `ASTRO_GATEWAY_URL` | Astropods AI Gateway URL |
+| `ASTRO_GATEWAY_API_KEY` | AI Gateway authentication key |
+| `SHIELDARBITER_API_TOKEN` | Shared authentication token |
+| `MODEL_DEFAULT` | AI model selection (optional; defaults to `claude-sonnet-4-6`) |
+
+Keep all credentials and tokens private. Do not commit them to GitHub.
+
+**3. Start the agent**
+
+Development mode:
 
 ```bash
 bun run dev
 ```
 
-Or start it directly:
+Direct startup:
 
 ```bash
 bun start
 ```
 
-Check the service logs for its startup status and configured endpoint.
+Check the service logs to confirm startup and identify the configured endpoint.
 
 ## Backend Integration
 
-The ShieldArbiter backend connects to this agent through its case-analysis endpoint. The agent requires a valid shared authentication token.
+The agent is designed to integrate with the ShieldArbiter Node.js backend through the case-analysis endpoint:
 
-Configure the backend connection settings separately. Keep all API keys and authentication tokens in local environment variables.
+`POST /cases/:id/ai-analysis`
 
-## Important
+The backend sends relevant transaction, complaint, and evidence information to the configured AI service and receives structured recommendations.
 
-- AI recommendations are decision-support outputs, not automatic financial decisions.
-- A merchant or authorized reviewer must evaluate recommendations before taking action.
-- The AI service must be running and correctly configured for case analysis to work.
-- Never commit API keys, tokens, or other secrets.
+The integration requires:
 
-## Technology
+- A running and correctly configured agent service.
+- `ASTROPODS_AI_URL` and `ASTROPODS_API_TOKEN` in the backend environment.
+- A matching authentication configuration between the backend and agent.
 
-- Mastra
-- Astropods AI gateway
-- Claude Sonnet 4.6
-- Bun
-- TypeScript
+The AI analysis endpoint cannot operate until these services and credentials are configured.
+
+## Responsible AI and Human Oversight
+
+- AI-generated recommendations are intended for decision support.
+- Recommendations do not constitute automatic financial decisions.
+- Merchants or authorized reviewers must evaluate the recommendations before taking action.
+- AI output should be considered alongside transaction records and available evidence.
+
+## Demo Video
+
+Watch the ShieldArbiter project demonstration:
+
+[Watch the ShieldArbiter Demo](https://youtu.be/MYeyQhxGbkQ?si=ZsQLLsrAEj-2teg8)
+
+## License
+
+This project is part of ShieldArbiter. See the repository's root `LICENSE` file for licensing information.
