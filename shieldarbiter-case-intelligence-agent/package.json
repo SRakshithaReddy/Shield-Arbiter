@@ -2,7 +2,7 @@
   "name": "shieldarbiter-case-intelligence-agent",
   "version": "0.1.0",
   "type": "module",
-  "description": "Describe what your agent does in one sentence.",
+ "description": "AI-powered case intelligence agent for ShieldArbiter dispute review and evidence analysis."
   "scripts": {
     "dev": "bun --watch agent/index.ts",
     "dev:ingest": "bun --watch ingestion/index.ts",
