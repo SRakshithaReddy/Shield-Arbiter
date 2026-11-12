@@ -98,40 +98,67 @@ Watch the ShieldArbiter project demonstration:
 
 ## Application Screenshots
 
-Explore the ShieldArbiter interface and its key workflows.
+Explore the ShieldArbiter application through screenshots of its payment, transaction monitoring, risk intelligence, case management, and AI-assisted dispute-resolution workflows.
 
-### 1. Main Dashboard
-![ShieldArbiter Dashboard](screenshots/01-dashboard.png)
+### 1. Main Dashboard — Payment and Risk Overview
+
+![ShieldArbiter Dashboard](screenshots/Payment%20and%20Risk%20Overview.png)
 
 ### 2. PayPal Sandbox Checkout
-![PayPal Sandbox Checkout](screenshots/02-paypal-checkout.png)
 
-### 3. Transaction Explorer
-![Transaction Explorer](screenshots/03-transactions.png)
+![PayPal Sandbox Checkout](screenshots/PayPal%20Sandbox%20Checkout.png)
+
+### 3. Recent Transactions Explorer
+
+![Recent Transactions](screenshots/Recent%20Transactions%20Explorer.png)
 
 ### 4. Transaction Risk Intelligence
-![Risk Intelligence](screenshots/04-risk-intelligence.png)
 
-### 5. Case Management
-![Case Management](screenshots/05-case-management.png)
+![Transaction Risk Intelligence](screenshots/Transaction%20Risk%20Intelligence.png)
 
-### 6. Case Details
-![Case Details](screenshots/06-case-details.png)
+### 5. Customer Case Management
+
+![Customer Case Management](screenshots/Customer%20Case%20Management.png)
+
+### 6. Case Details — Transaction and Complaint Information
+
+![Case Details](screenshots/Case%20Details%20%E2%80%94%20Transaction%20and%20Complaint%20Information.png)
 
 ### 7. AI-Assisted Case Analysis
-![AI Case Analysis](screenshots/07-ai-analysis.png)
 
-### 8. AI Recommendation Rationale
-![AI Rationale](screenshots/08-ai-rationale.png)
+![AI-Assisted Case Analysis](screenshots/AI-Assisted%20Case%20Analysis.png)
 
-### 9. Evidence Analysis
-![Evidence Analysis](screenshots/09-evidence-analysis.png)
+### 8. Case Summary and AI Rationale
 
-### 10. Evidence History
-![Evidence History](screenshots/10-evidence-history.png)
+![Case Summary and AI Rationale](screenshots/Case%20Summary%20and%20AI%20Rationale.png)
 
-### 11. Refund Outcome
-![Refund Outcome](screenshots/11-refund-outcome.png)
+### 9. Evidence Analysis and Missing Information
+
+![Evidence Analysis](screenshots/Evidence%20Analysis%20and%20Missing%20Information.png)
+
+### 10. Evidence History — Case #10
+
+![Evidence History Case 10](screenshots/Evidence%20History%20%E2%80%94%20Case%20%2310.png)
+
+### 11. Case Details — Case #8
+
+![Case Details Case 8](screenshots/Case%20Details%20%E2%80%94%20Case%20%238.png)
+
+### 12. Evidence Analysis — Case #8
+
+![Evidence Analysis Case 8](screenshots/Evidence%20Analysis%20%E2%80%94%20Case%20%238.png)
+
+### 13. Complete Evidence History — Case #8
+
+![Complete Evidence History](screenshots/Complete%20Evidence%20History%20%E2%80%94%20Case%20%238.png)
+
+### 14. AI Recommendation and Refund Status — Case #8
+
+![AI Recommendation and Refund Status](screenshots/AI%20Recommendation%20and%20Refund%20Status%20%E2%80%94%20Case%20%238.png)
+
+### 15. AI Case Summary and Decision Rationale — Case #8
+
+![AI Case Summary and Decision Rationale](screenshots/AI%20Case%20Summary%20and%20Decision%20Rationale%20%E2%80%94%20Case%20%238.png)
 
 ## License
 
